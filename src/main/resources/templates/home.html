@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<a href="/second">–></a>
+<h1>HELLO SPRING</h1>
+<div th:each="item : ${items}">
+  <h1 th:text="${item.getId()}"></h1>
+  <h1 th:text="${item.getFullName()}"></h1>
+  <h2 th:text="${item.getDescription()}"></h2>
+  <h3 th:text="${item.getPrice()}"></h3>
+  <hr>
+</div>
+</body>
+</html>
