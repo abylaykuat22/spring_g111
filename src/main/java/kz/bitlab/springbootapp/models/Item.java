@@ -10,8 +10,9 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Item {
+
   private Long id;
-  private String fullName;
+  private String name;
   private String description;
   private double price;
 }
