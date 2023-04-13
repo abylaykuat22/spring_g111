@@ -11,9 +11,13 @@ public class DBManager {
   private static Long id = 4L;
 
   static {
-    items.add(new Item(1L, "IPhone X", "8 GB RAM", 300000));
-    items.add(new Item(2L, "IPhone 11", "16 GB RAM", 400000));
-    items.add(new Item(3L, "IPhone 13", "32 GB RAM", 500000));
+    items.add(Item.builder() // применение @Builder
+        .id(1L)
+        .name("Iphone 13")
+        .isExist(true)
+        .build());
+    items.add(new Item(2L, "IPhone 11", "16 GB RAM", 400000, false));
+    items.add(new Item(3L, "IPhone 13", "32 GB RAM", 600000, true));
   }
 
   public static List<Item> getItems() {

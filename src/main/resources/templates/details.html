@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <link th:insert="~{head.html}">
-</head>
-<body>
-<div th:insert="~{navbar.html}"></div>
-<div class="container col-6 mx-auto">
-  <br>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main.html">
+<div layout:fragment="content">
+  <div class="container col-6 mx-auto">
+    <br>
     <div class="row">
       <div class="col-4">
         NAME:
@@ -33,6 +30,6 @@
         <input class="form-control" type="number" th:value="${zat.getPrice()}">
       </div>
     </div>
+  </div>
 </div>
-</body>
 </html>

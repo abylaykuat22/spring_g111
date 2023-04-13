@@ -1,16 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <link th:insert="~{head.html}">
-</head>
-<body>
-<div th:insert="~{navbar.html}"></div>
-<div class="container">
-  <!-- Button trigger modal -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main.html">
+<div layout:fragment="content">
   <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addItem">
     ADD ITEM +
   </button>
-
   <!-- Modal -->
   <div class="modal fade" id="addItem" tabindex="-1" aria-labelledby="exampleModalLabel"
        aria-hidden="true">
@@ -66,7 +60,8 @@
     <th>DETAILS</th>
     </thead>
     <tbody>
-    <tr th:each="item : ${items}">
+    <tr th:each="item : ${items}" th:if="${item.isExist()}"
+        th:style="${item.getPrice()>500000 ? 'background-color:red' : 'background-color:green'}">
       <td th:text="${item.getId()}"></td>
       <td th:text="${item.getName()}"></td>
       <td th:text="${item.getDescription()}"></td>
@@ -76,6 +71,7 @@
     </tr>
     </tbody>
   </table>
+
 </div>
-</body>
+
 </html>
