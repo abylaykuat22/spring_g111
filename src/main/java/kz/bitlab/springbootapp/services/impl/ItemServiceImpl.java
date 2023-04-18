@@ -1,16 +1,18 @@
-package kz.bitlab.springbootapp.db;
+package kz.bitlab.springbootapp.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import kz.bitlab.springbootapp.models.Item;
+import kz.bitlab.springbootapp.services.ItemService;
+import org.springframework.stereotype.Service;
 
-public class DBManager {
+@Service
+public class ItemServiceImpl implements ItemService {
 
-  private static List<Item> items = new ArrayList<>();
+  private List<Item> items = new ArrayList<>();
+  private Long id = 4L;
 
-  private static Long id = 4L;
-
-  static {
+  {
     items.add(Item.builder() // применение @Builder
         .id(1L)
         .name("Iphone 13")
@@ -20,11 +22,14 @@ public class DBManager {
     items.add(new Item(3L, "IPhone 13", "32 GB RAM", 600000, true));
   }
 
-  public static List<Item> getItems() {
+
+  @Override
+  public List<Item> getItems() {
     return items;
   }
 
-  public static Item getItemById(Long id) {
+  @Override
+  public Item getItemById(Long id) {
     for (Item item : items) {
       if (item.getId() == id) {
         return item;
@@ -33,7 +38,8 @@ public class DBManager {
     return null;
   }
 
-  public static void addItem(Item item) {
+  @Override
+  public void createItem(Item item) {
     item.setId(id);
     items.add(item);
     id++;

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main.html">
+<div layout:fragment="content" class="container col-6 mx-auto">
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+          data-bs-target="#addBlogModal">
+    ADD BLOG
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="addBlogModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+       aria-hidden="true">
+    <div class="modal-dialog">
+      <form action="/addBlog" method="post">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-2">
+                TITLE:
+              </div>
+              <div class="col-10">
+                <input type="text" class="form-control" name="title">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-2">
+                AUTHOR:
+              </div>
+              <div class="col-10">
+                <input type="text" class="form-control" name="author">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-2">
+                DESCRIPTION:
+              </div>
+              <div class="col-10">
+                <input type="text" class="form-control" name="description">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Add Blog</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead>
+    <th>ID</th>
+    <th>TITLE</th>
+    <th>DESCRIPTION</th>
+    <th>AUTHOR</th>
+    </thead>
+    <tbody>
+    <tr th:each="blog : ${novosti}">
+      <td th:text="${blog.getId()}"></td>
+      <td th:text="${blog.getTitle()}"></td>
+      <td th:text="${blog.getDescription()}"></td>
+      <td th:text="${blog.getAuthor()}"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</html>
