@@ -60,7 +60,8 @@
     <th>DETAILS</th>
     </thead>
     <tbody>
-    <tr th:each="item : ${items}" th:if="${item.isExist()}"
+    <tr th:each="item : ${items}
+"
         th:style="${item.getPrice()>500000 ? 'background-color:red' : 'background-color:green'}">
       <td th:text="${item.getId()}"></td>
       <td th:text="${item.getName()}"></td>
@@ -68,10 +69,11 @@
       <td>
         <a th:href="${'/details/'+item.getId()}" class="btn btn-dark">DETAILS</a>
       </td>
+      <td>
+        <a th:href="${'/detailsbyname/'+item.getName()}" class="btn btn-success">DETAILS BY NAME</a>
+      </td>
     </tr>
     </tbody>
   </table>
-
 </div>
-
 </html>

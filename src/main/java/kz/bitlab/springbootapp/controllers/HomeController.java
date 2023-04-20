@@ -17,33 +17,48 @@ public class HomeController {
   @Autowired
   private ItemService itemService;
 
-  @GetMapping("/") // @WebServlet(value='/') + doGet()
+  @GetMapping("/")
   public String homePage(Model model) {
     List<Item> items = itemService.getItems();
-    model.addAttribute("items", items); //reg.setAttribute("items", items)
-    return "home"; //req.getRequestDispatcher("/home.jsp").forward(req, resp);
+    model.addAttribute("items", items);
+    return "home";
   }
 
   @GetMapping("/details/{id}")
-  public String itemDetails(@PathVariable Long id, Model model) { //req.getParameter("id")
+  public String itemDetails(@PathVariable Long id, Model model) {
     Item item = itemService.getItemById(id);
     if (item != null) {
       model.addAttribute("zat", item);
       return "details";
     }
-    return "home"; //req.getRequestDispatcher("/").forward(req, resp)
+    return "home";
+  }
+
+  @GetMapping("/detailsbyname/{name}")
+  public String itemDetailsByName(@PathVariable String name, Model model) {
+    Item item = itemService.getItemByName(name);
+    if (item != null) {
+      model.addAttribute("zat", item);
+      return "details";
+    }
+    return "home";
   }
 
   @PostMapping("/addItem")
-  public String addItem(@RequestParam String name,
-      @RequestParam String description,
-      @RequestParam int price) {
-    Item item = new Item();
-    item.setName(name);
-    item.setPrice(price);
-    item.setDescription(description);
-    item.setExist(true);
+  public String addItem(Item item) {
     itemService.createItem(item);
-    return "redirect:/"; //resp.sendRedirect("/")
+    return "redirect:/";
+  }
+
+  @PostMapping("/editItem")
+  public String editItem(Item item) {
+    itemService.editItem(item);
+    return "redirect:/";
+  }
+
+  @PostMapping("/deleteItem")
+  public String deleteItem(@RequestParam Long id) {
+    itemService.deleteItemById(id);
+    return "redirect:/";
   }
 }

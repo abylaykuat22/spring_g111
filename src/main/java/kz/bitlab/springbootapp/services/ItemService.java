@@ -9,5 +9,11 @@ public interface ItemService {
 
   Item getItemById(Long id);
 
+  Item getItemByName(String name);
+
   void createItem(Item item);
+
+  void editItem(Item item);
+
+  void deleteItemById(Long id);
 }
