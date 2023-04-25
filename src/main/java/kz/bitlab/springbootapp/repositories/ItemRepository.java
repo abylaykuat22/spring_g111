@@ -9,4 +9,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
   Item getItemByName(String name);
 
+  void deleteItemsByBrandId(Long id);
+
 }

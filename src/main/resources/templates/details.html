@@ -30,6 +30,15 @@
         <h5 th:text="${zat.getPrice()}"></h5>
       </div>
     </div>
+    <br>
+    <div class="row">
+      <div class="col-4">
+        BRAND:
+      </div>
+      <div class="col-8">
+        <h5 th:text="${zat.getBrand().getName()} + '/' + ${zat.getBrand().getShortName()}"></h5>
+      </div>
+    </div>
     <div class="row">
       <div class="col-6">
         <!-- Button trigger modal -->
@@ -60,6 +69,7 @@
                              th:value="${zat.getName()}">
                     </div>
                   </div>
+                  <br>
                   <div class="row">
                     <div class="col-4">
                       DESCRIPTION:
@@ -69,6 +79,7 @@
                              th:value="${zat.getDescription()}">
                     </div>
                   </div>
+                  <br>
                   <div class="row">
                     <div class="col-4">
                       PRICE:
@@ -78,6 +89,23 @@
                              th:value="${zat.getPrice()}">
                     </div>
                   </div>
+                  <br>
+                  <div class="row">
+                    <div class="col-4">
+                      BRAND:
+                    </div>
+                    <div class="col-8">
+                      <select name="brand.id" class="form-selected">
+                        <option th:each="brand : ${brands}"
+                                th:text="${brand.getName()} + '/' + ${brand.getShortName()}"
+                                th:value="${brand.getId()}"
+                                th:selected="${brand.getId() == zat.getBrand().getId()}"
+                        >
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout/main.html">
+<div layout:fragment="content">
+  <div class="container col-6 mx-auto">
+    <br>
+    <div class="row">
+      <div class="col-4">
+        NAME:
+      </div>
+      <div class="col-8">
+        <h5 th:text="${brand.getName()}"></h5>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-4">
+        SHORT NAME:
+      </div>
+      <div class="col-8">
+        <h5 th:text="${brand.getShortName()}"></h5>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-4">
+        COUNTRY:
+      </div>
+      <div class="col-8">
+        <h5 th:text="${brand.getCountry().getName()}"></h5>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-6">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                data-bs-target="#deleteBrandModal">
+          DELETE BRAND
+        </button>
+
+        <!-- Modal -->
+        <form action="/deleteBrand" method="post">
+          <div class="modal fade" id="deleteBrandModal" tabindex="-1"
+               aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel1">DELETE BRAND</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                          aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <input type="hidden" name="id" th:value="${brand.getId()}">
+                  <h1>ARE YOUR SURE?</h1>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NO
+                  </button>
+                  <button type="submit" class="btn btn-primary">YES</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

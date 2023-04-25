@@ -8,37 +8,29 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "items")
+@Table(name = "brands")
+@AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-public class Item {
+public class Brand {
 
-  @Id // primary key
-  @GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "id")
   private Long id;
 
-  @Column(name = "i_name", length = 20)
+  @Column(name = "name")
   private String name;
 
-  @Column(name = "i_description", columnDefinition = "text")
-  private String description;
-
-  @Column(name = "i_price")
-  private double price;
-
-  @Column(name = "is_exist")
-  private boolean isExist;
+  @Column(name = "short_name")
+  private String shortName;
 
   @ManyToOne
-  private Brand brand;
+  private Country country;
 }

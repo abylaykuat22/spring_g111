@@ -16,4 +16,6 @@ public interface ItemService {
   void editItem(Item item);
 
   void deleteItemById(Long id);
+
+  void deleteItemsByBrandId(Long brandId);
 }

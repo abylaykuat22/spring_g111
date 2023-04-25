@@ -43,6 +43,20 @@
                 <input type="number" class="form-control" name="price">
               </div>
             </div>
+            <br>
+            <div class="row">
+              <div class="col-4">
+                BRAND:
+              </div>
+              <div class="col-8">
+                <select name="brand.id" class="form-select">
+                  <option th:each="brand : ${brandter}"
+                          th:text="${brand.getName()} + '/' + ${brand.getShortName()}"
+                          th:value="${brand.getId()}">
+                  </option>
+                </select>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -60,17 +74,13 @@
     <th>DETAILS</th>
     </thead>
     <tbody>
-    <tr th:each="item : ${items}
-"
-        th:style="${item.getPrice()>500000 ? 'background-color:red' : 'background-color:green'}">
+    <tr th:each="item : ${items}"
+        th:style="${item.getPrice()>500000 ? 'background-color:red' : 'background-color:lightgreen'}">
       <td th:text="${item.getId()}"></td>
       <td th:text="${item.getName()}"></td>
       <td th:text="${item.getDescription()}"></td>
       <td>
-        <a th:href="${'/details/'+item.getId()}" class="btn btn-dark">DETAILS</a>
-      </td>
-      <td>
-        <a th:href="${'/detailsbyname/'+item.getName()}" class="btn btn-success">DETAILS BY NAME</a>
+        <a th:href="${'/details/'+item.getId()}" class="btn btn-primary">DETAILS</a>
       </td>
     </tr>
     </tbody>
