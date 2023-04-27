@@ -2,11 +2,14 @@ package kz.bitlab.springbootapp.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import kz.bitlab.springbootapp.enums.ItemStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,8 +39,8 @@ public class Item {
   @Column(name = "i_price")
   private double price;
 
-  @Column(name = "is_exist")
-  private boolean isExist;
+  @Enumerated(EnumType.STRING)
+  private ItemStatus status;
 
   @ManyToOne
   private Brand brand;

@@ -1,6 +1,7 @@
 package kz.bitlab.springbootapp.services.impl;
 
 import java.util.List;
+import kz.bitlab.springbootapp.enums.ItemStatus;
 import kz.bitlab.springbootapp.models.Item;
 import kz.bitlab.springbootapp.repositories.ItemRepository;
 import kz.bitlab.springbootapp.services.ItemService;
@@ -30,7 +31,8 @@ public class ItemServiceImpl implements ItemService {
 
   @Override
   public void createItem(Item item) {
-    item.setExist(true);
+
+    item.setStatus(ItemStatus.IN_STOCK);
     itemRepository.save(item);
   }
 

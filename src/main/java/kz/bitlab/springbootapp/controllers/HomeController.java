@@ -1,9 +1,9 @@
 package kz.bitlab.springbootapp.controllers;
 
 import java.util.List;
+import kz.bitlab.springbootapp.enums.ItemStatus;
 import kz.bitlab.springbootapp.models.Brand;
 import kz.bitlab.springbootapp.models.Item;
-import kz.bitlab.springbootapp.repositories.BrandRepository;
 import kz.bitlab.springbootapp.services.BrandService;
 import kz.bitlab.springbootapp.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,20 +36,11 @@ public class HomeController {
   public String itemDetails(@PathVariable Long id, Model model) {
     Item item = itemService.getItemById(id);
     List<Brand> brands = brandService.findAll();
+    List<ItemStatus> statuses = List.of(ItemStatus.values());
     if (item != null) {
       model.addAttribute("zat", item);
       model.addAttribute("brands", brands);
-      System.out.println(brands.size());
-      return "details";
-    }
-    return "home";
-  }
-
-  @GetMapping("/detailsbyname/{name}")
-  public String itemDetailsByName(@PathVariable String name, Model model) {
-    Item item = itemService.getItemByName(name);
-    if (item != null) {
-      model.addAttribute("zat", item);
+      model.addAttribute("statuses", statuses);
       return "details";
     }
     return "home";
